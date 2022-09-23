@@ -11,3 +11,52 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*{
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+body{
+  background-color: rgb(234, 254, 255);
+}
+
+
+.app{
+  margin-left: 300px;
+  margin-right: 300px;
+  margin-top: 200px;
+  margin-bottom: 300px;
+  background-color: white;
+}
+
+.border-for{
+  border: 1px solid rgb(15, 15, 15);
+  border-radius: 5px;
+}
+
+.app-header{
+  position: relative;
+}
+
+/* .app-header-name{
+  position: absolute;
+  left: 1;
+}
+
+.app-header-notes{
+  position: absolute;
+  right: 1;
+} */
+
+.add-form-input{
+  margin-right: 20px;
+}
+
+.post-list{
+  flex-direction: column;
+}
+
+.spaces:not(:last-child){
+  margin-bottom: 10px;
+}
