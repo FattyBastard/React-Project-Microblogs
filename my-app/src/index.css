@@ -66,3 +66,7 @@ body{
 .spaces:not(:last-child){
   margin-bottom: 10px;
 }
+.important{
+  background-color: rgb(245, 197, 6);
+  color: white;
+}
