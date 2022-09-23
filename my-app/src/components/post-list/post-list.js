@@ -3,7 +3,7 @@ import PostListItem from '../post-list-item/post-list-item';
 
 const PostList = () => {
     return (
-        <ul className='post-list justify-content-center'>
+        <ul className='post-list'>
             <PostListItem />
             <PostListItem />
             <PostListItem />

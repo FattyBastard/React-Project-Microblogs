@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+ul{
+  list-style: none;
+  padding: 5px;
+}
+
 *{
   box-sizing: border-box;
   padding: 5px;
@@ -55,6 +60,7 @@ body{
 
 .post-list{
   flex-direction: column;
+
 }
 
 .spaces:not(:last-child){
