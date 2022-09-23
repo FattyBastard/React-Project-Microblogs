@@ -2,11 +2,14 @@ import React from 'react';
 
 const PostListItem = () => {
     return (
-        <div className='post-list-item d-flex'>
-            <span className='list-item-data'>Hello world</span>
-            <button className='list-item'></button>
-            <button></button>
-        </div>
+        <li className='d-flex justify-content-between'>
+            <span className='list-item-data align-items-center '>Hello world</span>
+            <div>
+                <button>trash</button>
+                <button>heart</button>
+                <button>star</button>
+            </div>
+        </li>    
     )
 }
 
