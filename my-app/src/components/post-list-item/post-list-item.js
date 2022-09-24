@@ -17,7 +17,8 @@ export default class PostListItem extends Component{
 
     render(){
         let classNames = 'd-flex justify-content-between border-for spaces';
-        const {label} = this.props;
+        const {label, deleteItem} = this.props;
+
         if (this.state.important){
             classNames += ' important';
         }
@@ -25,7 +26,7 @@ export default class PostListItem extends Component{
             <div className={classNames}>
                 <span className='list-item-data align-items-center '>{label}</span>
                 <div>
-                    <button className='btn'>
+                    <button onClick={deleteItem} className='btn'>
                         <i className='fa fa-trash'></i>
                     </button>
                     <button className='btn' onClick={this.switchImportant}>
