@@ -3,36 +3,34 @@ import React, {Component} from 'react';
 
 export default class PostListItem extends Component{
     constructor(props){
-        super(props);
-        this.state = {
-            important: false
-        };
-        this.switchImportant = this.switchImportant.bind(this);
-    }
-    switchImportant(){
-        this.setState(({important}) => ({
-            important: !important
-        }));
+        super(props); 
+        
     }
 
     render(){
-        let classNames = 'd-flex justify-content-between border-for spaces';
-        const {label, deleteItem} = this.props;
+        let btnImportant = 'btn';
+        let btnLike = 'btn';
+        const {label, deleteItem, id, like, state, toggleLike, toggleImportant} = this.props;
 
-        if (this.state.important){
-            classNames += ' important';
+        if (state){
+            btnImportant += ' important';
         }
+
+        if (like){
+            btnLike += " liked";
+        }
+
         return (
-            <div className={classNames}>
+            <div className='d-flex justify-content-between border-for spaces'>
                 <span className='list-item-data align-items-center '>{label}</span>
                 <div>
-                    <button onClick={deleteItem} className='btn'>
+                    <button onClick={() => deleteItem(id)} className='btn'>
                         <i className='fa fa-trash'></i>
                     </button>
-                    <button className='btn' onClick={this.switchImportant}>
+                    <button className={btnImportant} onClick={() => toggleImportant(id)}>
                         <i className='fa fa-star'></i>
                     </button>
-                    <button className='btn'>
+                    <button className={btnLike} onClick={() => toggleLike(id)}>
                         <i className='fa fa-heart'></i>
                     </button>
                 </div>

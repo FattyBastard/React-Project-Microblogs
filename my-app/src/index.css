@@ -67,6 +67,23 @@ body{
   margin-bottom: 10px;
 }
 .important{
-  background-color: rgb(245, 197, 6);
-  color: white;
+  color: rgb(245, 197, 6);
+  border-color: rgb(245, 197, 6); 
 }
+.important:hover{
+  color: rgb(245, 197, 6);
+}
+.important:focus{
+  color: rgb(245, 197, 6);
+}
+.liked{
+  color: rgb(255, 33, 66);
+  border-color: rgb(255, 33, 66);
+}
+.liked:hover{
+  color: rgb(255, 33, 66);
+}
+.liked:focus{
+  color: rgb(255, 33, 66);
+}
+
