@@ -16,7 +16,8 @@ export default class App extends Component {
               { label: "ewfreferferferfefrrf", state: false, like: false, id: 3 },
               { label: "sdfsfewqwe wefergfr rtbrybfr r", state: false, like: false, id: 4 },
               { label: "ere err erer erer erre", state: false, like: false, id: 5 }],
-      term: ''
+      term: '',
+      filter: 'all'
     };
 
     this.maxId = 6
@@ -27,17 +28,34 @@ export default class App extends Component {
     this.toggleImportant = this.toggleImportant.bind(this);
     this.toggleLike = this.toggleLike.bind(this);
 
-    this.filterPosts = this.filterPosts.bind(this);
+    this.searchPosts = this.searchPosts.bind(this);
     this.onUpdateSearch = this.onUpdateSearch.bind(this);
+
+    this.filterPosts = this.filterPosts.bind(this);
+    this.setFilter = this.setFilter.bind(this);
   }
 
-  filterPosts(items, term){
+  setFilter(filter){
+    this.setState({filter : filter});
+  }
+
+  searchPosts(items, term){
     if (term.length === 0){
       return items;
     }
     return items.filter((item) => {
       return item.label.indexOf(term) > -1
     });
+  }
+
+  filterPosts(items, filter){
+
+    if (filter === "likes"){
+      return items.filter((item) => item.like);
+    }
+    else{
+      return items;
+    }
   }
 
   onUpdateSearch(term){
@@ -101,13 +119,12 @@ export default class App extends Component {
 
   render() {
 
-    const {data, term} = this.state;
+    const {data, term, filter} = this.state;
     
     const numberOfLikedPosts = data.filter((item) => item.like).length;
     const numberOfAllPosts = data.length;
 
-    const visiblePosts = this.filterPosts(data, term);
-    
+    const visiblePosts = this.filterPosts(this.searchPosts(data, term), filter);
     
     return (
       <div className='app border-for'>
@@ -117,7 +134,8 @@ export default class App extends Component {
         <div className='d-flex search-panel'>
           <SearchPanel 
             onUpdateSearch = {this.onUpdateSearch}/>
-          <PostStatusFilter />
+          <PostStatusFilter
+          setFilter = {this.setFilter}/>
         </div>
         <PostList
           posts = {visiblePosts}
