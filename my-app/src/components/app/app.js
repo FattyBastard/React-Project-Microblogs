@@ -15,7 +15,8 @@ export default class App extends Component {
               { label: "wefwefreferfref", state: true, like: false, id: 2},
               { label: "ewfreferferferfefrrf", state: false, like: false, id: 3 },
               { label: "sdfsfewqwe wefergfr rtbrybfr r", state: false, like: false, id: 4 },
-              { label: "ere err erer erer erre", state: false, like: false, id: 5 }]
+              { label: "ere err erer erer erre", state: false, like: false, id: 5 }],
+      term: ''
     };
 
     this.maxId = 6
@@ -25,6 +26,22 @@ export default class App extends Component {
 
     this.toggleImportant = this.toggleImportant.bind(this);
     this.toggleLike = this.toggleLike.bind(this);
+
+    this.filterPosts = this.filterPosts.bind(this);
+    this.onUpdateSearch = this.onUpdateSearch.bind(this);
+  }
+
+  filterPosts(items, term){
+    if (term.length === 0){
+      return items;
+    }
+    return items.filter((item) => {
+      return item.label.indexOf(term) > -1
+    });
+  }
+
+  onUpdateSearch(term){
+    this.setState({term : term});
   }
 
   toggleLike(id){
@@ -83,18 +100,30 @@ export default class App extends Component {
   }
 
   render() {
+
+    const {data, term} = this.state;
+    
+    const numberOfLikedPosts = data.filter((item) => item.like).length;
+    const numberOfAllPosts = data.length;
+
+    const visiblePosts = this.filterPosts(data, term);
+    
+    
     return (
       <div className='app border-for'>
-        <AppHeader />
+        <AppHeader 
+          likes = {numberOfLikedPosts}
+          sizePosts = {numberOfAllPosts}/>
         <div className='d-flex search-panel'>
-          <SearchPanel />
+          <SearchPanel 
+            onUpdateSearch = {this.onUpdateSearch}/>
           <PostStatusFilter />
         </div>
         <PostList
-          posts={this.state.data}
+          posts = {visiblePosts}
           deleteItem = {this.deleteItem}
           toggleImportant = {this.toggleImportant}
-          toggleLike = {this.toggleLike} />
+          toggleLike = {this.toggleLike}/>
         <PostAddForm
           addItem={this.addItem} />
       </div>

@@ -22,7 +22,6 @@ export default class PostList extends Component{
                         like = {item.like}
                         id = {item.id}
                     />
-    
                 </li>
             )
         });
